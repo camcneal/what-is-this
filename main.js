@@ -57,66 +57,66 @@ var obj4 = {
 }
 console.log(obj4.child.thisFn('this is fun!'));
 // // this is: obj4.child
-// // because...
+// // because... context of obj called by obj 4 is nested
 
 // // Problem 8
 console.log(returnThis.call(this, 'how does call work?'));
 // // this is: global window obj
-// // because...
+// // because... used the global obj call method
 
 // // Problem 9
 console.log(returnThis.apply(this, ['how does apply work?']));
-// // this is: global
-// // because...
+// // this is: global used the global obj to call
+// // because... used the apply method making it global
 
 // // Problem 10
 console.log(returnThis.apply(obj1, ['how does apply work?']));
 // // this is: obj 1
-// // because...
+// // because... returnthis.apply called obj 1
 
 // // Problem 11
 console.log(returnThis.call(obj2, ['how does call work?']));
 // // this is: obj 2
-// // because...
+// // because... returnthis.call called by obj 2
 
 // // Problem 12
 var newReturnThis1 = returnThis.bind(this, 'how does bind work?');
 console.log(newReturnThis1());
 // // this is: global window obj
-// // because...
+// // because... not a function but a variable
 
 // // Problem 13
 var newReturnThis2 = returnThis.bind(null, 'how does bind work?');
 console.log(newReturnThis2());
 // // this is: window global obj
-// // because... because its not a function
+// // because... because its being stored as an variable
 
 // // Problem 14
 var newReturnThis3 = returnThis.bind(obj4, 'how does bind work?');
 console.log(newReturnThis3());
 // // this is: obj4.child
-// // because...
+// // because... its being called by the bind method
 
 // // Problem 15
 document.getElementById('button').addEventListener('click', function(e) {
  console.log(this);
 });
-// // this is:
-// // because...
+// // this is: input type button
+// // because... it registers a click
 
 // // Problem 16
 $('#button').on('click', function(e) {
  console.log(this);
 });
-// // this is:
-// // because...
+// // this is: input type button
+// // because... it registers a click
 
 // // Problem 17
-// $.ajax({
-//  url: 'http://tiny-za-server.herokuapp.com/collections/unicorns',
-//  success: function() {
-//      console.log(this);
-//  }
-// })
-// // this is:
-// // because...
+$.ajax({
+ url: 'http://tiny-za-server.herokuapp.com/collections/unicorns',
+ success: function() {
+     console.log(this);
+ }
+})
+// // this is:  object
+// // because... because its in the success function
